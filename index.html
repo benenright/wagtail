@@ -29,7 +29,6 @@
             cursor: move;
             transition: none; /* Disable transition animations */
             position: relative;
-            background-color: white;
         }
         .item-content:hover {
             border: 1px dashed #2E1F5E;
@@ -59,7 +58,6 @@
             align-items: center;
             position: relative;
             left: 0;
-            background-color: white;
             display: block;
             width: 100%;
             padding: 18px 13px;
@@ -96,6 +94,7 @@
                 margin-left: 3px;
                 margin-bottom: 5px;
                 display: inline-block;
+                font-weight: normal;
             }
             &:hover {
                 color: black;
@@ -170,6 +169,7 @@
                 margin-left: 3px;
                 margin-bottom: 5px;
                 display: inline-block;
+                font-weight: normal;
             }
         }
         .item-actions i.fa-angle-up, .item-actions i.fa-angle-down  {
@@ -180,13 +180,13 @@
         }
         .other-actions {
             border-right: 1px solid #C8C8C8;
-            padding-right: 15px;
+            padding-right: 10px;
             i {
                 margin-right: 10px;
             }
         }
         .reorder {
-            padding-left: 15px;
+            padding-left: 10px;
             i {
                 margin-right: 10px;
             }
@@ -200,6 +200,7 @@
             display: none;
             flex-direction: column;
             width: 100%;
+            background-color: white;
         }
         .item-details input {
             margin-bottom: 10px;
@@ -219,8 +220,13 @@
             border-radius: 0;
             background-color: white;
         }
-        .item-expanded:hover .item-content, .item-expanded:hover .item-details, .item-expanded:hover .line {
+        .item-expanded:hover .item-details {
             border-left: 1px dashed #2E1F5E;
+        }
+        .item-expanded:hover .item-content {
+            border-left: 1px dashed #2E1F5E;
+            border-top: 1px dashed transparent;
+            border-bottom: 1px dashed transparent;
         }
         .item-expanded .item-details {
             display: flex;
@@ -231,6 +237,9 @@
         }
         .item-expanded .item-preview {
             display: none;
+        }
+        .fa-check {
+            color: green !important;
         }
     </style>
 </head>
@@ -247,8 +256,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -282,8 +291,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -317,8 +326,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -352,8 +361,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -387,8 +396,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -422,8 +431,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -457,8 +466,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -492,8 +501,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -527,8 +536,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -562,8 +571,8 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone clone"><span>Clone</span></i>
-                    <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
                 <div class="reorder">
@@ -658,9 +667,10 @@
                     <span class="item-preview">Preview text for new block</span>
                 </div>
                 <div class="item-actions">
+                    <div class="line"></div>
                     <div class="other-actions">
-                        <i class="far fa-clone clone"><span>Clone</span></i>
-                        <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                        <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                        <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
                         <i class="far fa-trash-can delete"><span>Delete</span></i>
                     </div>
                     <div class="reorder">
@@ -689,9 +699,28 @@
     }
 
     function copyItem(copyButton) {
+        // Get the item to be copied
         const itemToCopy = copyButton.closest('li');
         copiedItem = itemToCopy.cloneNode(true);
+
+        // Get the icon element (which is the copyButton itself)
+        const icon = copyButton;
+        const textSpan = icon.querySelector('span');
+
+        // Change the icon class to 'fa-check'
+        icon.classList.remove('fa-copy');
+        icon.classList.add('fa-check');
+        textSpan.textContent = 'Copied';
+
+        // Revert to the original icon after 2 seconds
+        setTimeout(() => {
+            icon.classList.remove('fa-check');
+            icon.classList.add('fa-copy');
+            textSpan.textContent = 'Copy...';
+        }, 2000);
     }
+
+
 
     function pasteItem(pasteButton) {
         if (copiedItem) {
