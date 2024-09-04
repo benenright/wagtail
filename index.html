@@ -44,7 +44,7 @@
             border: none;
         }
         li.dragging {
-            opacity: 0.5;
+            opacity: 1;
             position: absolute;
             pointer-events: none;
             z-index: 1000;
@@ -55,7 +55,7 @@
             border: 1px dashed transparent;
         }
         .placeholder {
-            height: 50px; /* Adjust based on your item height */
+            height: 60px; /* Adjust based on your item height */
             border: 2px dashed #6200ee;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -413,6 +413,29 @@
 
         .fa-check-green {
             color: green !important;
+        }
+
+
+        .dragging-shrink {
+            height: 50px; /* Contracted height while dragging */
+            background-color: #f0f0f0; /* Optional style to distinguish */
+            overflow: hidden;
+            width: 800px;
+            border-radius: 5px;
+        }
+
+        .dragging-shrink .item-details, .dragging-shrink .item-actions  {
+            display: none; /* Hide the expanded details while dragging */
+        }
+
+        .dragging-shrink .item-preview  {
+            display: block; 
+        }
+
+        .dragging-shrink .item-content {
+            padding: 15px;
+            background-color: #fafafa; /* Optional background change */
+            border-radius: 5px;
         }
 
 
@@ -857,11 +880,28 @@
         });
 
         item.addEventListener('dragstart', (e) => {
+            // Manually create a clone of the item and apply the shrink class
+            const dragClone = item.cloneNode(true);
+            dragClone.classList.add('dragging-shrink');
+            dragClone.style.position = 'absolute'; // Ensure it doesn't affect the layout
+            dragClone.style.pointerEvents = 'none'; // Disable interactions with the clone
+            
+            document.body.appendChild(dragClone);  // Add the clone to the body (outside the list)
+
+            // Set the drag image
+            e.dataTransfer.setDragImage(dragClone, 0, 0);
+
             draggingItem = item;
+
+            // Timeout to trigger the actual dragging
             setTimeout(() => {
                 item.classList.add('dragging');
                 list.insertBefore(placeholder, item.nextSibling);
             }, 0);
+
+            // Clean up the clone after dragging starts
+            setTimeout(() => document.body.removeChild(dragClone), 0);
+
             e.dataTransfer.setData('text/html', ''); // required for Firefox compatibility
         });
 
@@ -893,6 +933,8 @@
             }
         });
     }
+
+
 
     let activeInsertButton = null;  // Global variable to store the insert button
 
