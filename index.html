@@ -12,17 +12,20 @@
 
         body {
             font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif,Apple Color Emoji,"Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-            margin: 40px;
+            margin: 0;
             background-color: white;
             font-size: 14px;
             box-sizing: border-box;
+            border-left: 60px solid #2E1F5E;
         }
 
         ul {
             list-style-type: none;
-            padding: 0;
             width: 800px;
-            margin: 0 auto;
+            margin: 0 0 0 80px;
+            padding: 60px 0 60px 40px;
+            display: block;
+            border-left: 1px dashed #E0E0E0;
         }
 
         /* Block Styling */
@@ -166,7 +169,7 @@
             display: none;
         }
         .item-expanded .item-actions .line {
-            width: 260px;
+            width: 320px;
             border-top: 1px dashed #E0E0E0;
             margin-right: 20px;
             display: inline-block;
@@ -217,13 +220,20 @@
             width: 100%;
             background-color: white;
         }
-        .item-details input {
+        .item-details input, .item-details textarea {
             margin-bottom: 10px;
             padding: 12px;
             border: 1px solid #C8C8C8;
             border-radius: 4px;
             width: 100%;
             font-size: 18px;
+        }
+        .item-details textarea {
+            padding: 20px;
+            font-size: 20px;
+            line-height: 1.5;
+            width: 98%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif, Apple Color Emoji, "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
         .item-details label {
             color: #2E1F5E;
@@ -256,7 +266,7 @@
         .item-expanded .item-details {
             display: flex;
             box-sizing: border-box;
-            padding: 0px 40px 20px 40px;
+            padding: 0px 40px 0px 40px;
             width: 100%;
             border-left: 1px dashed #E0E0E0;
         }
@@ -446,7 +456,7 @@
         </div>
     </li>
     
-    <li draggable="true" class="draggable-item">
+    <li draggable="true" class="draggable-item item-expanded">
         <div class="item-content">
             <div class="item-left">
                 <i class="fas fa-align-left item-icon"></i>
@@ -469,11 +479,9 @@
         </div>
         <div class="item-details">
             <label>Field label</label>
-            <input type="text" placeholder="Field 1">
-            <label>Field label</label>
-            <input type="text" placeholder="Field 2">
-            <label>Field label</label>
-            <input type="text" placeholder="Field 3">
+            <textarea rows="8" cols="1">Wagtails are small, slender birds known for their distinctive habit of constantly wagging their long tails up and down. These birds are part of the Motacillidae family, and they are often seen walking or running along the ground, where they forage for insects. Wagtails are found across Europe, Asia, and Africa, and they are commonly associated with habitats near water, such as riverbanks, lakesides, and wetlands. Their plumage is often a mix of white, black, and gray, though some species also have yellow feathers.
+            </textarea>
+
         </div>
         <div class="insert-paste-actions">
             <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
