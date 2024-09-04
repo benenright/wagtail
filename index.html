@@ -7,6 +7,9 @@
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+
+        /* Body Styling */
+
         body {
             font-family: System, sans-serif;
             margin: 40px;
@@ -14,12 +17,16 @@
             font-size: 14px;
             box-sizing: border-box;
         }
+
         ul {
             list-style-type: none;
             padding: 0;
             width: 800px;
             margin: 0 auto;
         }
+
+        /* Block Styling */
+
         li {
             display: flex;
             flex-direction: column;
@@ -29,9 +36,6 @@
             cursor: move;
             transition: none; /* Disable transition animations */
             position: relative;
-        }
-        .item-content:hover {
-            border: 1px dashed #2E1F5E;
         }
         .item-expanded:hover .item-content {
             border: none;
@@ -48,9 +52,9 @@
             border: 1px dashed transparent;
         }
         .placeholder {
-            height: 70px; /* Adjust based on your item height */
+            height: 50px; /* Adjust based on your item height */
             border: 2px dashed #6200ee;
-            border-radius: 5px;
+            border-radius: 8px;
             margin-bottom: 10px;
         }
         .insert-paste-actions {
@@ -69,12 +73,17 @@
             border-radius: 50%;
             margin-right: 15px;
             font-size: 19px;
-            line-height: 17px;
-            width: 16px;
-            height: 16px;
+            line-height: 20px;
+            width: 20px;
+            height: 20px;
             text-align: center;
             float: left;
             cursor: pointer;
+            border: 1px solid #008080;
+            background-color: #008080;
+        }
+        .insert-paste-actions .plus-icon:hover {
+            background-color: white;
             color: #008080;
         }
         .insert-paste-actions .paste-icon {
@@ -120,8 +129,14 @@
             justify-content: space-between;
             background-color: #f5f5f5;
             border-radius: 5px;
-            padding: 12px 5px 12px 12px;
+            padding: 12px 0px 12px 12px;
             border: 1px solid transparent;
+        }
+        .item-content:hover {
+            border: 1px dashed #2E1F5E;
+        }
+        .item-content:active {
+            border: 1px dashed transparent;
         }
         .item-left {
             display: flex;
@@ -192,7 +207,7 @@
             }
             .fa-grip {
                 transform: rotate(90deg);
-                font-size: 13px;
+                font-size: 12px;
                 cursor: move;
             }
         }
@@ -217,6 +232,7 @@
         .item-expanded .item-content {
             box-sizing: border-box;
             border-left: 1px dashed #E0E0E0;
+            border-right: 1px dashed transparent;
             border-radius: 0;
             background-color: white;
         }
@@ -228,6 +244,12 @@
             border-top: 1px dashed transparent;
             border-bottom: 1px dashed transparent;
         }
+/*        .item-expanded:active .item-details {
+            border-left: 1px dashed transparent;
+        }
+        .item-expanded:active .item-content {
+            border-left: 1px dashed transparent;
+        }*/
         .item-expanded .item-details {
             display: flex;
             box-sizing: border-box;
@@ -241,6 +263,95 @@
         .fa-check {
             color: green !important;
         }
+
+
+        /* Popup Styling */
+        
+        #block-chooser-popup {
+            display: none;
+            position: absolute;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            z-index: 1000;
+            width: 400px; /* Updated width to accommodate two columns */
+        }
+
+        #block-search {
+            width: 94%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        #block-options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 10px; /* Space between items */
+        }
+
+        .block-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px dashed #E0E0E0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .paste-block-btn {
+            box-sizing: border-box;
+/*            border-top: 1px solid #E0E0E0;*/
+            display: block;
+            width: 100%;
+            padding: 15px 10px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            margin: 5px 0 0 0;
+            cursor: pointer;
+            .block-icon {
+                color: grey;
+                font-size: 22px;
+            }
+            .title {
+                font-weight: normal;
+            }
+            .desc {
+                color: #757575;
+                padding: 3px 0;
+            }
+            &:hover {
+                i {
+                    color: black;
+                }
+            }
+        }
+
+        .block-option:hover {
+            background-color: #f0f0f0;
+            border: 1px dashed #2E1F5E;
+        }
+
+        .block-icon {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #6200ee;
+        }
+
+        .block-option span {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+
+
+
     </style>
 </head>
 <body>
@@ -597,6 +708,66 @@
     </li>
 </ul>
 
+<!-- Popup Structure for Block Chooser -->
+<div id="block-chooser-popup" style="display:none; position:absolute; background:white; padding:20px; ; border-radius:8px; z-index:1000;">
+    <input type="text" id="block-search" placeholder="Search options..." onkeyup="filterBlocks()" style=" padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px;">
+
+    <div id="block-options-container">
+        <div class="block-option" onclick="insertNewBlock('Image Block')">
+            <i class="fas fa-image block-icon"></i>
+            <span>Image</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('Rich Text Block')">
+            <i class="fas fa-align-left block-icon"></i>
+            <span>Rich text</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('Quote Block')">
+            <i class="fas fa-quote-right block-icon"></i>
+            <span>Quote</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('CTA - large banner Block')">
+            <i class="fas fa-ad block-icon"></i>
+            <span>CTA - large banner</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('Video Block')">
+            <i class="fas fa-video block-icon"></i>
+            <span>Video embed</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('Gallery Block')">
+            <i class="fas fa-images block-icon"></i>
+            <span>Gallery</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('Calendar Block')">
+            <i class="fas fa-calendar-alt block-icon"></i>
+            <span>Calendar</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('Document Block')">
+            <i class="fas fa-file-alt block-icon"></i>
+            <span>Document</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('Link Block')">
+            <i class="fas fa-link block-icon"></i>
+            <span>Link</span>
+        </div>
+        <div class="block-option" onclick="insertNewBlock('Custom Code Block')">
+            <i class="fas fa-code block-icon"></i>
+            <span>Custom Code</span>
+        </div>
+    </div>
+
+    <div class="paste-block-btn" onclick="pasteItemFromPopup()">
+        <i class="far fa-paste block-icon"></i>
+        <div class="paste-btn-text">
+            <div class="title">Paste block</div>
+            <div class="desc">If you have a compatible block copied to the clipboard</div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
 <script>
     let copiedItem = null;  // Variable to store the copied item
 
@@ -655,48 +826,114 @@
         });
     }
 
+    let activeInsertButton = null;  // Global variable to store the insert button
+
     function insertNewItem(insertButton) {
+        const popup = document.getElementById('block-chooser-popup');
+
+        // Position the popup near the clicked "+" button
+        const rect = insertButton.getBoundingClientRect();
+        popup.style.top = `${rect.bottom - 45 + window.scrollY}px`;
+        popup.style.left = `${rect.left + 30 + window.scrollX}px`;
+        popup.style.display = 'block';
+
+        // Store the reference to the insert button for later use
+        activeInsertButton = insertButton;  // Store the actual element, not a string
+    }
+
+    function insertNewBlock(blockType) {
+        const popup = document.getElementById('block-chooser-popup');
+
+        if (!activeInsertButton) {
+            return;  // Return if there's no active insert button
+        }
+
         const newItem = document.createElement('li');
         newItem.className = 'draggable-item item-expanded';
         newItem.draggable = true;
-        newItem.innerHTML = `
-            <div class="item-content">
-                <div class="item-left">
-                    <i class="fas fa-circle-chevron-right item-icon"></i>
-                    <span class="item-title">New Block</span>
-                    <span class="item-preview">Preview text for new block</span>
-                </div>
-                <div class="item-actions">
-                    <div class="line"></div>
-                    <div class="other-actions">
-                        <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
-                        <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
-                        <i class="far fa-trash-can delete"><span>Delete</span></i>
-                    </div>
-                    <div class="reorder">
-                        <i class="fas fa-angle-up"></i>
-                        <i class="fas fa-angle-down"></i>
-                        <i class="fas fa-grip drag-handle"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="item-details">
-                <label>Field label</label>
-                <input type="text" placeholder="Field 1">
-                <label>Field label</label>
-                <input type="text" placeholder="Field 2">
-                <label>Field label</label>
-                <input type="text" placeholder="Field 3">
-            </div>
-            <div class="insert-paste-actions">
-                <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-                <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-            </div>
-        `;
 
-        insertButton.closest('li').insertAdjacentElement('afterend', newItem);
-        attachEventListeners(newItem);
+        // Insert the corresponding block content
+        newItem.innerHTML = `
+
+                <div class="item-content">
+                    <div class="item-left">
+                        <i class="fas ${getIconForBlock(blockType)} item-icon"></i>
+                        <span class="item-title">${blockType}</span>
+                        <span class="item-preview">Preview text for ${blockType.toLowerCase()}</span>
+                    </div>
+                    <div class="item-actions">
+                        <div class="line"></div>
+                        <div class="other-actions">
+                            <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                            <i class="far fa-clone clone"><span>↓ Duplicate</span></i>
+                            <i class="far fa-trash-can delete"><span>Delete</span></i>
+                        </div>
+                        <div class="reorder">
+                            <i class="fas fa-angle-up"></i>
+                            <i class="fas fa-angle-down"></i>
+                            <i class="fas fa-grip drag-handle"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-details">
+                    <label>Field label</label>
+                    <input type="text" placeholder="Field 1">
+                    <label>Field label</label>
+                    <input type="text" placeholder="Field 2">
+                    <label>Field label</label>
+                    <input type="text" placeholder="Field 3">
+                </div>
+                <div class="insert-paste-actions">
+                    <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
+                    <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
+                </div>
+
+            `;
+
+        // Insert the new block after the button that opened the popup
+        activeInsertButton.closest('li').insertAdjacentElement('afterend', newItem);
+        attachEventListeners(newItem);  // Attach event listeners for the new item (e.g., drag/drop)
+
+        // Hide the popup
+        popup.style.display = 'none';
+
+        // Clear the activeInsertButton
+        activeInsertButton = null;
     }
+
+    function pasteItemFromPopup() {
+        const popup = document.getElementById('block-chooser-popup');
+
+        if (copiedItem && activeInsertButton) {
+            const newItem = copiedItem.cloneNode(true);
+            activeInsertButton.closest('li').insertAdjacentElement('afterend', newItem);
+            attachEventListeners(newItem);
+        }
+
+        // Hide the popup
+        popup.style.display = 'none';
+
+        // Clear the activeInsertButton
+        activeInsertButton = null;
+    }
+
+    function getIconForBlock(blockType) {
+        const icons = {
+            'Image Block': 'fa-image',
+            'Rich Text Block': 'fa-align-left',
+            'Quote Block': 'fa-quote-right',
+            'CTA - large banner Block': 'fa-ad',
+            'Video Block': 'fa-video',
+            'Gallery Block': 'fa-images',
+            'Calendar Block': 'fa-calendar-alt',
+            'Document Block': 'fa-file-alt',
+            'Link Block': 'fa-link',
+            'Custom Code Block': 'fa-code',
+        };
+        return icons[blockType] || 'fa-question-circle'; // Default icon if block type not found
+    }
+
+
 
     function copyItem(copyButton) {
         // Get the item to be copied
