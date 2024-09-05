@@ -120,6 +120,10 @@
             display: block;
         }
 
+        .insert-paste-actions:focus .paste-icon {
+            display: block;
+        }
+
         .insert-paste-actions .paste-icon  span {
             color: #757575;
             text-decoration: none;
@@ -454,7 +458,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -489,7 +493,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -522,7 +526,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -557,7 +561,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -592,7 +596,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -617,7 +621,7 @@
         </div>
     </li>
     
-    <li draggable="true" class="draggable-item">
+    <li draggable="true" class="draggable-item item-expanded">
         <div class="item-content">
             <div class="item-left">
                 <i class="fas fa-images item-icon"></i>
@@ -627,7 +631,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -645,6 +649,40 @@
             <input type="text" placeholder="Field 2">
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
+            <div draggable="true" class="draggable-item">
+                <div class="item-content">
+                    <div class="item-left">
+                        <i class="fas fa-images item-icon"></i>
+                        <span class="item-title">Nested block</span>
+                        <span class="item-preview">Preview text for gallery block</span>
+                    </div>
+                    <div class="item-actions">
+                        <div class="line"></div>
+                        <div class="other-actions">
+                            <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                            <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
+                            <i class="far fa-trash-can delete"><span>Delete</span></i>
+                        </div>
+                        <div class="reorder">
+                            <i class="fas fa-angle-up"></i>
+                            <i class="fas fa-angle-down"></i>
+                            <i class="fas fa-grip drag-handle"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-details">
+                    <label>Field label</label>
+                    <input type="text" placeholder="Field 1">
+                    <label>Field label</label>
+                    <input type="text" placeholder="Field 2">
+                    <label>Field label</label>
+                    <input type="text" placeholder="Field 3">
+                </div>
+                <div class="insert-paste-actions">
+                    <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
+                    <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
+                </div>
+            </div>
         </div>
         <div class="insert-paste-actions">
             <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
@@ -662,7 +700,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -697,7 +735,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -732,7 +770,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -767,7 +805,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -974,7 +1012,7 @@
                     <div class="item-actions">
                         <div class="line"></div>
                         <div class="other-actions">
-                            <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy...</span></i>
+                            <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                             <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                             <i class="far fa-trash-can delete"><span>Delete</span></i>
                         </div>
@@ -1012,20 +1050,39 @@
     }
 
     function pasteItemFromPopup() {
-        const popup = document.getElementById('block-chooser-popup');
+        const pasteButton = document.querySelector('.paste-block-btn');  // The paste button in the popup
+        const pasteIcon = pasteButton.querySelector('i');  // The icon inside the button
+        const pasteText = pasteButton.querySelector('.paste-btn-text .title');  // The title text inside the button
+        const pasteDesc = pasteButton.querySelector('.paste-btn-text .desc');  // The desc text inside the button
 
-        if (copiedItem && activeInsertButton) {
+        if (copiedItem) {
+            // If there is a copied item, paste it
             const newItem = copiedItem.cloneNode(true);
             activeInsertButton.closest('li').insertAdjacentElement('afterend', newItem);
             attachEventListeners(newItem);
+
+            // Hide the popup
+            document.getElementById('block-chooser-popup').style.display = 'none';
+        } else {
+            // If no copied item, display an alert and don't close the popup
+            if (pasteIcon && pasteText && pasteDesc) {
+                pasteIcon.classList.remove('fa-paste');
+                pasteIcon.classList.add('fas', 'fa-exclamation-triangle');  // Use 'fas' for solid icons
+                pasteText.textContent = 'No block to paste';
+                pasteDesc.textContent = 'You can copy a block from the actions at the top';
+
+                // Revert to the original state after 3 seconds
+                setTimeout(() => {
+                    pasteIcon.classList.remove('fa-exclamation-triangle');
+                    pasteIcon.classList.add('fas', 'fa-paste');
+                    pasteText.textContent = 'Paste block';
+                    pasteDesc.textContent = 'If you have a compatible block copied to the clipboard';
+                }, 5000);
+            }
         }
-
-        // Hide the popup
-        popup.style.display = 'none';
-
-        // Clear the activeInsertButton
-        activeInsertButton = null;
     }
+
+
 
     function getIconForBlock(blockType) {
         const icons = {
@@ -1045,92 +1102,54 @@
 
 
 
-    let currentCopyItem = null;
-
     function copyItem(copyButton) {
-        // Store the block to be copied
-        currentCopyItem = copyButton.closest('li');
+        // Get the item to be copied
+        const itemToCopy = copyButton.closest('li');
+        copiedItem = itemToCopy.cloneNode(true);
 
-        // Get the position to show the popup relative to the clicked button
-        const rect = copyButton.getBoundingClientRect();
-        const copyPopup = document.getElementById('copy-popup');
+        // Get the icon element (which is the copyButton itself)
+        const icon = copyButton;
+        const textSpan = icon.querySelector('span');
 
-        // Position the popup near the clicked button
-        copyPopup.style.top = `${rect.bottom + window.scrollY + 10}px`;
-        copyPopup.style.left = `${rect.left + window.scrollX}px`;
+        // Change the icon class to 'fa-check'
+        icon.classList.remove('fa-copy');
+        icon.classList.add('fa-check');
+        textSpan.textContent = 'Copied';
 
-        // Show the popup
-        copyPopup.style.display = 'block';
+        // Revert to the original icon after 2 seconds
+        setTimeout(() => {
+            icon.classList.remove('fa-check');
+            icon.classList.add('fa-copy');
+            textSpan.textContent = 'Copy...';
+        }, 2000);
     }
-
-    function copyBelow() {
-        if (currentCopyItem) {
-            const newItem = currentCopyItem.cloneNode(true);
-            // Insert the cloned item directly below the current one
-            currentCopyItem.insertAdjacentElement('afterend', newItem);
-            attachEventListeners(newItem); // Reattach event listeners to the cloned item
-        }
-
-        // Close the popup
-        closeCopyPopup();
-    }
-
-    function copyToClipboard() {
-        if (currentCopyItem) {
-            copiedItem = currentCopyItem.cloneNode(true);
-
-            // Find the main "Copy" button in the current block (within the current item)
-            const copyButton = currentCopyItem.querySelector('.copy');
-
-            if (copyButton) {
-                // Target the specific 'fas fa-copy' icon within the current item
-                const icon = copyButton;
-                const textSpan = copyButton.querySelector('span');
-
-                // Make sure the icon exists before manipulating it
-                if (icon) {
-                    // Change the icon and text to show "Copied"
-                    icon.classList.remove('fa-copy');
-                    icon.classList.add('fa-check', 'fa-check-green'); // Ensure green color is applied
-                }
-
-                if (textSpan) {
-                    textSpan.textContent = 'Copied';
-                }
-
-                // Revert after 2 seconds
-                setTimeout(() => {
-                    if (icon) {
-                        icon.classList.remove('fa-check', 'fa-check-green');
-                        icon.classList.add('fa-copy');
-                    }
-                    if (textSpan) {
-                        textSpan.textContent = 'Copy...';
-                    }
-                }, 2000);
-            }
-        }
-
-        // Close the popup
-        closeCopyPopup();
-    }
-
-
-
-    function closeCopyPopup() {
-        document.getElementById('copy-popup').style.display = 'none';
-    }
-
 
 
 
     function pasteItem(pasteButton) {
+        const pasteIcon = pasteButton.querySelector('i');
+
         if (copiedItem) {
+            // Paste the copied item as before
             const newItem = copiedItem.cloneNode(true);
             pasteButton.closest('li').insertAdjacentElement('afterend', newItem);
             attachEventListeners(newItem);
+        } else {
+            // If no block is copied, show the alert message and change the icon
+            pasteIcon.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+            pasteButton.querySelector('span').textContent = 'No block to paste, copy a block using the "copy" button at the top';
+            pasteButton.style.color = 'red';  // Change color to red for alert
+
+            // Revert to original state after 3 seconds
+            setTimeout(() => {
+                pasteIcon.innerHTML = '<i class="far fa-paste"></i>';
+                pasteButton.querySelector('span').textContent = 'Paste block';
+                pasteButton.style.color = '';  // Reset color
+            }, 3000);
         }
     }
+
+
 </script>
 
 </body>
