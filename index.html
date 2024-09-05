@@ -229,8 +229,9 @@
             padding: 12px;
             border: 1px solid #C8C8C8;
             border-radius: 4px;
-            width: 100%;
+            width: 98%;
             font-size: 18px;
+            box-sizing: border-box;
         }
         .item-details textarea {
             padding: 20px;
@@ -270,7 +271,7 @@
         .item-expanded .item-details {
             display: flex;
             box-sizing: border-box;
-            padding: 0px 40px 0px 40px;
+            padding: 0px 0 0px 40px;
             width: 100%;
             border-left: 1px dashed #E0E0E0;
         }
@@ -442,6 +443,11 @@
             border-radius: 5px;
         }
 
+        .nested {
+            width: 100%;
+            margin: 30px 0;
+        }
+
 
     </style>
 </head>
@@ -458,7 +464,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -493,7 +499,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -526,7 +532,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -561,7 +567,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -596,7 +602,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -631,7 +637,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -649,7 +655,7 @@
             <input type="text" placeholder="Field 2">
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
-            <div draggable="true" class="draggable-item">
+            <div draggable="true" class="draggable-item nested">
                 <div class="item-content">
                     <div class="item-left">
                         <i class="fas fa-images item-icon"></i>
@@ -659,7 +665,7 @@
                     <div class="item-actions">
                         <div class="line"></div>
                         <div class="other-actions">
-                            <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                            <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                             <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                             <i class="far fa-trash-can delete"><span>Delete</span></i>
                         </div>
@@ -700,7 +706,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -735,7 +741,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -770,7 +776,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -805,7 +811,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -887,15 +893,6 @@
     </div>
 
 </div>
-
-<!-- Copy Popup -->
-<div id="copy-popup" style="display:none; position:absolute; background:white; box-shadow:0 0 10px rgba(0,0,0,0.1); border-radius:8px; z-index:1001;">
-    <i onclick="copyBelow()" class="fas fa-arrow-down clone"><span>Copy below</span></i>
-    <i onclick="copyToClipboard()" class="far fa-clipboard clone"><span>Copy to clipboard</span></i>
-<!--     <button onclick="copyBelow()">Copy below</button>
-    <button onclick="copyToClipboard()">Copy to clipboard</button> -->
-</div>
-
 
 <script>
     let copiedItem = null;  // Variable to store the copied item
@@ -1012,7 +1009,7 @@
                     <div class="item-actions">
                         <div class="line"></div>
                         <div class="other-actions">
-                            <i class="fas fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+                            <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
                             <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                             <i class="far fa-trash-can delete"><span>Delete</span></i>
                         </div>
@@ -1082,8 +1079,6 @@
         }
     }
 
-
-
     function getIconForBlock(blockType) {
         const icons = {
             'Image Block': 'fa-image',
@@ -1100,8 +1095,6 @@
         return icons[blockType] || 'fa-question-circle'; // Default icon if block type not found
     }
 
-
-
     function copyItem(copyButton) {
         // Get the item to be copied
         const itemToCopy = copyButton.closest('li');
@@ -1112,19 +1105,21 @@
         const textSpan = icon.querySelector('span');
 
         // Change the icon class to 'fa-check'
-        icon.classList.remove('fa-copy');
+        icon.classList.remove('fa-clone');
+        icon.classList.remove('far');
         icon.classList.add('fa-check');
+        icon.classList.add('fas');
         textSpan.textContent = 'Copied';
 
         // Revert to the original icon after 2 seconds
         setTimeout(() => {
             icon.classList.remove('fa-check');
-            icon.classList.add('fa-copy');
+            icon.classList.remove('fas');
+            icon.classList.add('fa-clone');
+            icon.classList.add('far');
             textSpan.textContent = 'Copy...';
         }, 2000);
     }
-
-
 
     function pasteItem(pasteButton) {
         const pasteIcon = pasteButton.querySelector('i');
@@ -1148,7 +1143,6 @@
             }, 3000);
         }
     }
-
 
 </script>
 
