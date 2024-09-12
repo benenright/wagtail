@@ -44,12 +44,11 @@
             border: none;
         }
         li.dragging {
-            opacity: 1;
-            position: absolute;
+            opacity: 0.5;
+            position: relative;
             pointer-events: none;
             z-index: 1000;
             width: 100%;
-            transform: translateY(-9999px); /* Hide the original element */
         }
         li.dragging .item-expanded:hover .item-content {
             border: 1px dashed transparent;
@@ -94,7 +93,6 @@
             background-color: white;
             font-size: 16px;
             border: none;
-            display: none;
             text-decoration: none;
             padding-left: 15px;
             border-left: 1px solid #C8C8C8;
@@ -279,7 +277,7 @@
             display: none;
         }
         .fa-check {
-            color: green !important;
+            color: #1D7792 !important;
         }
 
 
@@ -511,7 +509,7 @@
             <div class="item-actions">
                 <div class="line"></div>
                 <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
+                    <i class="far fa-clipboard copy" onclick="copyItem(this)"><span>Copy</span></i>
                     <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                     <i class="far fa-trash-can delete"><span>Delete</span></i>
                 </div>
@@ -532,7 +530,7 @@
         </div>
         <div class="insert-paste-actions">
             <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
+            <i class="far fa-clipboard paste-icon" onclick="pasteItem(this)"><span>↓</span></i>
         </div>
     </li>
     
@@ -884,9 +882,11 @@
     </li>
 </ul>
 
+<div id="toast-notification" style="position: fixed; bottom: 20px; left: 40%; background-color: #1D7792; color: white; padding: 10px 20px; border-radius: 5px; display: none; z-index: 1000;">Block copied to clipboard</div>
+
 <!-- Popup Structure for Block Chooser -->
 <div id="block-chooser-popup" style="display:none; position:absolute; background:white; padding:20px; ; border-radius:8px; z-index:1000;">
-    <input type="text" id="block-search" placeholder="Search options..." onkeyup="filterBlocks()" style=" padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px;">
+    <input type="text" id="block-search" placeholder="Search options..." onkeyup="filterBlocks()" style=" padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
 
     <div id="block-options-container">
         <div class="block-option" onclick="insertNewBlock('Image Block')">
@@ -1113,7 +1113,7 @@
                 pasteIcon.classList.remove('fa-paste');
                 pasteIcon.classList.add('fas', 'fa-exclamation-triangle');  // Use 'fas' for solid icons
                 pasteText.textContent = 'No block to paste';
-                pasteDesc.textContent = 'You can copy a block from the actions at the top';
+                pasteDesc.textContent = 'First copy a compatible block to the clipboard using the ‘copy’ button at the top the block.';
 
                 // Revert to the original state after 3 seconds
                 setTimeout(() => {
@@ -1121,7 +1121,7 @@
                     pasteIcon.classList.add('fas', 'fa-paste');
                     pasteText.textContent = 'Paste block';
                     pasteDesc.textContent = 'If you have a compatible block copied to the clipboard';
-                }, 5000);
+                }, 6000);
             }
         }
     }
@@ -1142,31 +1142,46 @@
         return icons[blockType] || 'fa-question-circle'; // Default icon if block type not found
     }
 
+    // Function to show the toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            toast.textContent = message;
+            toast.style.display = 'block';
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
     function copyItem(copyButton) {
-        // Get the item to be copied
-        const itemToCopy = copyButton.closest('li');
-        copiedItem = itemToCopy.cloneNode(true);
+            // Get the item to be copied
+            const itemToCopy = copyButton.closest('li');
+            copiedItem = itemToCopy.cloneNode(true);
 
-        // Get the icon element (which is the copyButton itself)
-        const icon = copyButton;
-        const textSpan = icon.querySelector('span');
+            // Get the icon element (which is the copyButton itself)
+            const icon = copyButton;
+            const textSpan = icon.querySelector('span');
 
-        // Change the icon class to 'fa-check'
-        icon.classList.remove('fa-clone');
-        icon.classList.remove('far');
-        icon.classList.add('fa-check');
-        icon.classList.add('fas');
-        textSpan.textContent = 'Copied';
+            // Change the icon class to 'fa-check'
+            icon.classList.remove('fa-clone');
+            icon.classList.remove('far');
+            icon.classList.add('fa-check');
+            icon.classList.add('fas');
+            textSpan.textContent = 'Copied';
 
-        // Revert to the original icon after 2 seconds
-        setTimeout(() => {
-            icon.classList.remove('fa-check');
-            icon.classList.remove('fas');
-            icon.classList.add('fa-clone');
-            icon.classList.add('far');
-            textSpan.textContent = 'Copy';
-        }, 2000);
-    }
+            // Trigger toast notification
+            showToast('Block copied to clipboard');
+
+            // Revert to the original icon after 2 seconds
+            setTimeout(() => {
+                icon.classList.remove('fa-check');
+                icon.classList.remove('fas');
+                icon.classList.add('fa-clone');
+                icon.classList.add('far');
+                textSpan.textContent = 'Copy';
+            }, 2000);
+        }
 
     function pasteItem(pasteButton) {
         const pasteIcon = pasteButton.querySelector('i');
