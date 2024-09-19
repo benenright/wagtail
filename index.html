@@ -1,5 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<template id="item-actions-template">
+    <div class="item-actions">
+        <div class="line"></div>
+        <div class="other-actions">
+            <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
+            <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
+            <i class="far fa-trash-can delete"><span>Delete</span></i>
+        </div>
+        <div class="reorder">
+            <i class="fas fa-angle-up"></i>
+            <i class="fas fa-angle-down"></i>
+            <i class="fas fa-grip drag-handle"></i>
+        </div>
+    </div>
+</template>
+
+<template id="insert-paste-actions-template">
+    <div class="insert-paste-actions">
+        <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
+        <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>↓</span><span class="word">Paste block</span></i>
+    </div>
+</template>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,7 +121,10 @@
             padding-left: 15px;
             border-left: 1px solid #C8C8C8;
             border-radius: 0;
-            color: #757575;;
+            color: #757575;
+            .word {
+                display: none;
+            }
             span {
                 font-size: 12px;
                 font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,"Helvetica Neue",Arial,sans-serif,Apple Color Emoji,"Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -110,6 +137,9 @@
                 color: black;
                 span {
                     color: black;
+                }
+                .word {
+                    display: inline-block;
                 }
             }
         }
@@ -413,11 +443,9 @@
             background-color: #5300d1;
         }
 
-
         .fa-check-green {
             color: green !important;
         }
-
 
         .dragging-shrink {
             height: 50px; /* Contracted height while dragging */
@@ -491,14 +519,38 @@
             margin-bottom: 5px;
         }
 
+        .template-container-paste {
+            height: 57px;
+        }
+
+        #toggle-all {
+            position: sticky;
+            top: 20px;
+            right: 300px;
+            float: right;
+            padding: 5px 10px;
+            background-color: white;
+            border: 1px solid #008080;
+            color: #008080;
+            border-radius: 3px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        #toggle-all:hover {
+            background-color: white;
+            border: 1px solid #008080;
+        }
 
     </style>
 </head>
+
 <body>
 
-
+<button id="toggle-all" onclick="toggleAllItems()">Contract all</button>
 
 <ul id="draggable-list">
+
     <li draggable="true" class="draggable-item">
         <div class="item-content">
             <div class="item-left">
@@ -506,19 +558,7 @@
                 <span class="item-title">Image Block</span>
                 <span class="item-preview">Preview text for image block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clipboard copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -528,10 +568,7 @@
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-clipboard paste-icon" onclick="pasteItem(this)"><span>↓</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item item-expanded">
@@ -541,30 +578,14 @@
                 <span class="item-title">Rich Text Block</span>
                 <span class="item-preview">Preview text for rich text block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
             <textarea rows="8" cols="1">Wagtails are small, slender birds known for their distinctive habit of constantly wagging their long tails up and down. These birds are part of the Motacillidae family, and they are often seen walking or running along the ground, where they forage for insects. Wagtails are found across Europe, Asia, and Africa, and they are commonly associated with habitats near water, such as riverbanks, lakesides, and wetlands. Their plumage is often a mix of white, black, and gray, though some species also have yellow feathers.
             </textarea>
-
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item item-expanded">
@@ -574,19 +595,7 @@
                 <span class="item-title">Quote Block</span>
                 <span class="item-preview">Preview text for quote block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -596,10 +605,7 @@
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item">
@@ -609,19 +615,7 @@
                 <span class="item-title">Chart Block</span>
                 <span class="item-preview">Preview text for chart block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -631,10 +625,7 @@
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item">
@@ -644,19 +635,7 @@
                 <span class="item-title">Video Block</span>
                 <span class="item-preview">Preview text for video block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -666,10 +645,7 @@
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item item-expanded">
@@ -679,19 +655,7 @@
                 <span class="item-title">Gallery Block</span>
                 <span class="item-preview">Preview text for gallery block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -707,19 +671,7 @@
                         <span class="item-title">Nested block</span>
                         <span class="item-preview">Preview text for gallery block</span>
                     </div>
-                    <div class="item-actions">
-                        <div class="line"></div>
-                        <div class="other-actions">
-                            <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                            <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                            <i class="far fa-trash-can delete"><span>Delete</span></i>
-                        </div>
-                        <div class="reorder">
-                            <i class="fas fa-angle-up"></i>
-                            <i class="fas fa-angle-down"></i>
-                            <i class="fas fa-grip drag-handle"></i>
-                        </div>
-                    </div>
+                    <div class="template-container-item-actions"></div>
                 </div>
                 <div class="item-details">
                     <label>Field label</label>
@@ -729,16 +681,10 @@
                     <label>Field label</label>
                     <input type="text" placeholder="Field 3">
                 </div>
-                <div class="insert-paste-actions">
-                    <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-                    <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-                </div>
+                <div class="template-container-paste"></div>
             </div>
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item">
@@ -748,19 +694,7 @@
                 <span class="item-title">Calendar Block</span>
                 <span class="item-preview">Preview text for calendar block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -770,10 +704,7 @@
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item">
@@ -783,19 +714,7 @@
                 <span class="item-title">Document Block</span>
                 <span class="item-preview">Preview text for document block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -805,10 +724,7 @@
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item">
@@ -818,19 +734,7 @@
                 <span class="item-title">Link Block</span>
                 <span class="item-preview">Preview text for link block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -840,10 +744,7 @@
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
     
     <li draggable="true" class="draggable-item">
@@ -853,19 +754,7 @@
                 <span class="item-title">Custom Code Block</span>
                 <span class="item-preview">Preview text for custom code block</span>
             </div>
-            <div class="item-actions">
-                <div class="line"></div>
-                <div class="other-actions">
-                    <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                    <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
-                    <i class="far fa-trash-can delete"><span>Delete</span></i>
-                </div>
-                <div class="reorder">
-                    <i class="fas fa-angle-up"></i>
-                    <i class="fas fa-angle-down"></i>
-                    <i class="fas fa-grip drag-handle"></i>
-                </div>
-            </div>
+            <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
             <label>Field label</label>
@@ -875,10 +764,7 @@
             <label>Field label</label>
             <input type="text" placeholder="Field 3">
         </div>
-        <div class="insert-paste-actions">
-            <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-            <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-        </div>
+        <div class="template-container-paste"></div>
     </li>
 </ul>
 
@@ -887,6 +773,9 @@
 <!-- Popup Structure for Block Chooser -->
 <div id="block-chooser-popup" style="display:none; position:absolute; background:white; padding:20px; ; border-radius:8px; z-index:1000;">
     <input type="text" id="block-search" placeholder="Search options..." onkeyup="filterBlocks()" style=" padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
+
+
+    <h3>Blocks</h3>
 
     <div id="block-options-container">
         <div class="block-option" onclick="insertNewBlock('Image Block')">
@@ -931,6 +820,8 @@
         </div>
     </div>
 
+    <h3>Actions</h3>
+
     <div class="paste-block-btn" onclick="pasteItemFromPopup()">
         <i class="far fa-paste block-icon"></i>
         <div class="paste-btn-text">
@@ -939,9 +830,34 @@
         </div>
     </div>
 
+    <div class="paste-block-btn">
+        <i class="fas fa-scissors block-icon"></i>
+        <div class="paste-btn-text">
+            <div class="title">Split block</div>
+        </div>
+    </div>
+
 </div>
 
 <script>
+
+    function insertTemplate(templateId, targetElement) {
+        const template = document.getElementById(templateId);
+        const clone = template.content.cloneNode(true);
+        targetElement.appendChild(clone);
+    }
+
+
+    document.querySelectorAll('.template-container-item-actions').forEach(container => {
+        insertTemplate('item-actions-template', container);
+    });
+
+
+    document.querySelectorAll('.template-container-paste').forEach(container => {
+        insertTemplate('insert-paste-actions-template', container);
+    });
+
+
     let copiedItem = null;  // Variable to store the copied item
 
     const listItems = document.querySelectorAll('#draggable-list li');
@@ -1056,7 +972,7 @@
                     <div class="item-actions">
                         <div class="line"></div>
                         <div class="other-actions">
-                            <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
+                            <i class="far fa-copy copy" onclick="copyItem(this)"><span>Copy</span></i>
                             <!-- <i class="far fa-clone clone"><span>↓ Duplicate</span></i> -->
                             <i class="far fa-trash-can delete"><span>Delete</span></i>
                         </div>
@@ -1077,7 +993,7 @@
                 </div>
                 <div class="insert-paste-actions">
                     <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-                    <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
+                    <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>↓</span></i>
                 </div>
 
             `;
@@ -1177,7 +1093,7 @@
             setTimeout(() => {
                 icon.classList.remove('fa-check');
                 icon.classList.remove('fas');
-                icon.classList.add('fa-clone');
+                icon.classList.add('fa-check');
                 icon.classList.add('far');
                 textSpan.textContent = 'Copy';
             }, 2000);
@@ -1323,18 +1239,7 @@
                         <span class="item-title">${blockType}</span>
                         <span class="item-preview">Preview text for ${blockType.toLowerCase()}</span>
                     </div>
-                    <div class="item-actions">
-                        <div class="line"></div>
-                        <div class="other-actions">
-                            <i class="far fa-clone copy" onclick="copyItem(this)"><span>Copy</span></i>
-                            <i class="far fa-trash-can delete"><span>Delete</span></i>
-                        </div>
-                        <div class="reorder">
-                            <i class="fas fa-angle-up"></i>
-                            <i class="fas fa-angle-down"></i>
-                            <i class="fas fa-grip drag-handle"></i>
-                        </div>
-                    </div>
+                    <div class="template-container-item-actions"></div>
                 </div>
                 <div class="item-details">
                     <label>Field label</label>
@@ -1344,10 +1249,7 @@
                     <label>Field label</label>
                     <input type="text" placeholder="Field 3">
                 </div>
-                <div class="insert-paste-actions">
-                    <i class="fas fa-plus-circle plus-icon" onclick="insertNewItem(this)"></i>
-                    <i class="far fa-paste paste-icon" onclick="pasteItem(this)"><span>Paste block</span></i>
-                </div>
+                <div class="template-container-paste"></div>
             `;
 
             const list = document.getElementById('draggable-list');
@@ -1366,6 +1268,18 @@
     });
 
 
+    function toggleAllItems() {
+        const toggleButton = document.getElementById('toggle-all');
+        const allItems = document.querySelectorAll('#draggable-list li');
+
+        if (toggleButton.textContent === 'Contract all') {
+            allItems.forEach(item => item.classList.remove('item-expanded'));
+            toggleButton.textContent = 'Expand all';
+        } else {
+            allItems.forEach(item => item.classList.add('item-expanded'));
+            toggleButton.textContent = 'Contract all';
+        }
+    }
 
 
 </script>
