@@ -182,6 +182,8 @@
             font-size: 20px;
             margin-right: 15px;
             color: #6200ee;
+            width: 20px;
+            text-align: center;
         }
         .item-title {
             font-weight: bold;
@@ -356,7 +358,7 @@
             align-items: center;
             padding: 10px;
             border: 1px dashed #E0E0E0;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
@@ -368,12 +370,12 @@
             width: 100%;
             padding: 15px 10px;
             display: flex;
-            align-items: center;
             margin: 5px 0 0 0;
             cursor: pointer;
+            color: #333;
             .block-icon {
                 color: grey;
-                font-size: 22px;
+                font-size: 20px;
             }
             .title {
                 font-weight: 500;
@@ -399,6 +401,8 @@
             font-size: 18px;
             margin-right: 10px;
             color: #6200ee;
+            width: 20px;
+            text-align: center;
         }
 
         .block-option span {
@@ -552,6 +556,10 @@
         #toggle-all:hover {
             background-color: white;
             border: 1px solid #008080;
+        }
+
+        .fa-exclamation-triangle {
+            color: red;
         }
 
     </style>
@@ -798,7 +806,6 @@
     <input type="text" id="block-search" placeholder="Search options..." onkeyup="filterBlocks()" style=" padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px;">
 
 
-    <h3>Blocks</h3>
 
     <div id="block-options-container">
         <div class="block-option" onclick="insertNewBlock('Image Block')">
@@ -841,11 +848,22 @@
             <i class="fas fa-code block-icon"></i>
             <span>Custom Code</span>
         </div>
+        <div class="paste-block-btn" onclick="pasteItemFromPopup()">
+            <i class="far fa-paste block-icon"></i>
+            <div class="paste-btn-text">
+                <div class="title">Paste block</div>
+                <div class="desc"></div>
+            </div>
+        </div>
+        <div class="paste-block-btn">
+            <i class="fas fa-scissors block-icon"></i>
+            <div class="paste-btn-text">
+                <div class="title">Split block</div>
+            </div>
+        </div>
     </div>
 
-    <h3>Actions</h3>
-
-    <div class="paste-block-btn" onclick="pasteItemFromPopup()">
+<!--     <div class="paste-block-btn" onclick="pasteItemFromPopup()">
         <i class="far fa-paste block-icon"></i>
         <div class="paste-btn-text">
             <div class="title">Paste block</div>
@@ -858,7 +876,7 @@
         <div class="paste-btn-text">
             <div class="title">Split block</div>
         </div>
-    </div>
+    </div> -->
 
 </div>
 
