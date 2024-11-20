@@ -47,7 +47,7 @@
             list-style-type: none;
             width: 800px;
             margin: 0 0 0 80px;
-            padding: 60px 0 60px 40px;
+            padding: 60px 0 60px 25px;
             display: block;
             border-left: 1px dashed #E0E0E0;
         }
@@ -90,7 +90,7 @@
             left: 0;
             display: block;
             width: 100%;
-            padding: 18px 13px;
+            padding: 18px 11px;
             box-sizing: border-box;
         }
         .insert-paste-actions .plus-icon,
@@ -115,11 +115,12 @@
         .insert-paste-actions .paste-icon {
             width: auto;
             background-color: white;
-            font-size: 16px;
+            font-size: 17px;
             border: none;
             text-decoration: none;
-            padding-left: 15px;
-            border-left: 1px solid #C8C8C8;
+            padding-top: 2px;
+/*            padding-left: 15px;
+            border-left: 1px solid #C8C8C8;*/
             border-radius: 0;
             color: #757575;
             .word {
@@ -179,7 +180,7 @@
         }
         .item-icon {
             font-size: 20px;
-            margin-right: 10px;
+            margin-right: 15px;
             color: #6200ee;
         }
         .item-title {
@@ -201,13 +202,16 @@
             display: none;
         }
         .item-expanded .item-actions .line {
-            width: 320px;
+            width: 380px;
             border-top: 1px dashed #E0E0E0;
             margin-right: 20px;
             display: inline-block;
         }
         .item-expanded:hover .line {
             border-top: 1px dashed #555;
+        }
+        .item-expanded:hover .vert-dotted-line {
+            border-left: 1px dashed #555;
         }
         .item-actions i {
             font-size: 16px;
@@ -251,6 +255,17 @@
             flex-direction: column;
             width: 100%;
             background-color: white;
+            position: relative;
+        }
+        .item-details .vert-dotted-line {
+            width: 1px;
+            height: 100%;
+            border-left: 1px dashed #E0E0E0;
+            margin-right: 20px;
+            display: inline-block;
+            position: absolute;
+            top:0;
+            left: 20px;
         }
         .item-details input, .item-details textarea {
             margin-bottom: 10px;
@@ -274,18 +289,16 @@
         }
         .item-expanded .item-content {
             box-sizing: border-box;
-            border-left: 1px dashed #E0E0E0;
+            border-left: 1px dashed transparent;
             border-right: 1px dashed transparent;
             border-top: 1px dashed transparent;
             border-bottom: 1px dashed transparent;
             border-radius: 0;
             background-color: white;
         }
-        .item-expanded:hover .item-details {
-            border-left: 1px dashed #2E1F5E;
-        }
+
         .item-expanded:hover .item-content {
-            border-left: 1px dashed #2E1F5E;
+            border-left: 1px dashed transparent;
             border-right: 1px dashed transparent;
             border-top: 1px dashed transparent;
             border-bottom: 1px dashed transparent;
@@ -299,9 +312,8 @@
         .item-expanded .item-details {
             display: flex;
             box-sizing: border-box;
-            padding: 0px 0 0px 40px;
+            padding: 0px 0 0px 48px;
             width: 100%;
-            border-left: 1px dashed #E0E0E0;
         }
         .item-expanded .item-preview {
             display: none;
@@ -561,6 +573,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -581,6 +594,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <textarea rows="8" cols="1">Wagtails are small, slender birds known for their distinctive habit of constantly wagging their long tails up and down. These birds are part of the Motacillidae family, and they are often seen walking or running along the ground, where they forage for insects. Wagtails are found across Europe, Asia, and Africa, and they are commonly associated with habitats near water, such as riverbanks, lakesides, and wetlands. Their plumage is often a mix of white, black, and gray, though some species also have yellow feathers.
             </textarea>
@@ -598,6 +612,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -618,6 +633,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -638,6 +654,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -658,6 +675,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -674,6 +692,7 @@
                     <div class="template-container-item-actions"></div>
                 </div>
                 <div class="item-details">
+                    <div class="vert-dotted-line"></div>
                     <label>Field label</label>
                     <input type="text" placeholder="Field 1">
                     <label>Field label</label>
@@ -697,6 +716,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -717,6 +737,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -737,6 +758,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -757,6 +779,7 @@
             <div class="template-container-item-actions"></div>
         </div>
         <div class="item-details">
+            <div class="vert-dotted-line"></div>
             <label>Field label</label>
             <input type="text" placeholder="Field 1">
             <label>Field label</label>
@@ -984,6 +1007,7 @@
                     </div>
                 </div>
                 <div class="item-details">
+                    <div class="vert-dotted-line"></div>
                     <label>Field label</label>
                     <input type="text" placeholder="Field 1">
                     <label>Field label</label>
@@ -1242,6 +1266,7 @@
                     <div class="template-container-item-actions"></div>
                 </div>
                 <div class="item-details">
+                    <div class="vert-dotted-line"></div>
                     <label>Field label</label>
                     <input type="text" placeholder="Field 1">
                     <label>Field label</label>
